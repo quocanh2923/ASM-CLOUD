@@ -1,0 +1,49 @@
+<form action="/product/edit/{{ product._id }}" method="post">
+   <h1>Edit product</h1>
+   Product name: <input type="text" name="model" id="" required value="{{ product.model }}">
+   <br><br>
+   Product image: <input type="url" name="image" id="" required value="{{ product.image }}">
+   <img src="{{ product.image }}" alt="" width="100" height="100">
+   <br><br>
+   Product brand: <br>
+   <select name="brand">
+      {{#each brands }}
+      <option value="{{ _id }}"> {{ name }}</option>
+      {{/each}}
+   </select>
+   <br><br>
+   Product category: <br>
+   <select name="category">
+      {{#each categories }}
+      <option value="{{ _id }}"> {{ name }}</option>
+      {{/each}}
+   </select>
+   <br><br>
+   Product color:
+   {{#equal product.color "Black"}}
+   <input type="radio" name="color" value="Black" checked="true"> Black
+   <input type="radio" name="color" value="White"> White
+   <input type="radio" name="color" value="Yellow"> Yellow
+   <input type="radio" name="color" value="Blue"> Blue
+   {{/equal}}
+   {{#equal product.color "White"}}
+   <input type="radio" name="color" value="Black"> Black
+   <input type="radio" name="color" value="White" checked="true"> White
+   <input type="radio" name="color" value="Yellow"> Yellow
+   <input type="radio" name="color" value="Blue"> Blue
+   {{/equal}}
+   {{#equal product.color "Yellow"}}
+   <input type="radio" name="color" value="Black" > Black
+   <input type="radio" name="color" value="White"> White
+   <input type="radio" name="color" value="Yellow" checked="true"> Yellow
+   <input type="radio" name="color" value="Blue"> Blue
+   {{/equal}}
+   {{#equal product.color "Blue"}}
+   <input type="radio" name="color" value="Black"> Black
+   <input type="radio" name="color" value="White"> White
+   <input type="radio" name="color" value="Yellow"> Yellow
+   <input type="radio" name="color" value="Blue"  checked="true"> Blue
+   {{/equal}}
+   <br><br>
+   <input type="submit" value="Edit">
+</form>
