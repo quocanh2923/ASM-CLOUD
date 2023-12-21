@@ -36,11 +36,11 @@ router.get('/delete/:id', async (req, res) => {
       console.log('Delete category fail. Error: ' + err);
    };
 
-   //cách 2
-   var category = await CategoryModel.findById(id);
-   await CategoryModel.deleteOne(category);
+   // //cách 2
+   // var category = await CategoryModel.findById(id);
+   // await CategoryModel.deleteOne(category);
 
-   res.redirect('/category');
+   // res.redirect('/category');
 })
 
 router.get('/deleteall', async (req, res) => {

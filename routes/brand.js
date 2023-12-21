@@ -36,11 +36,11 @@ router.get('/delete/:id', async (req, res) => {
       console.log('Delete brand fail. Error: ' + err);
    };
 
-   //cách 2
-   var brand = await BrandModel.findById(id);
-   await BrandModel.deleteOne(brand);
+// //cách 2
+//    var brand = await BrandModel.findById(id);
+//    await BrandModel.deleteOne(brand);
 
-   res.redirect('/brand');
+//    res.redirect('/brand');
 })
 
 router.get('/deleteall', async (req, res) => {

@@ -36,6 +36,13 @@ router.get('/delete/:id', async (req, res) => {
    res.redirect('/product');
 })
 
+router.get('/deleteall', async (req, res) => {
+   
+   await ProductModel.deleteMany();
+   console.log('Delete all products succeed !');
+   res.redirect('/product');
+})
+
 router.get('/edit/:id', async (req, res) => {
    var id = req.params.id;
    var product = await ProductModel.findById(id);
