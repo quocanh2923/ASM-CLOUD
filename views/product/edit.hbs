@@ -5,6 +5,11 @@
    Product image: <input type="url" name="image" id="" required value="{{ product.image }}">
    <img src="{{ product.image }}" alt="" width="100" height="100">
    <br><br>
+   Product material: 
+      {{#each materials}}
+      <input type="radio" name="material" value="{{_id}}"> {{name}}
+      {{/each}}
+   <br><br>
    Product brand: <br>
    <select name="brand">
       {{#each brands }}

@@ -3,17 +3,18 @@ var router = express.Router();
 var ProductModel = require('../models/ProductModel');
 var BrandModel = require('../models/BrandModel');
 var CategoryModel = require('../models/CategoryModel');
+var MaterialModel = require('../models/MaterialModel');
 
 //URL: localhost:3001/product
 router.get('/', async (req, res) => {
-   var products = await ProductModel.find({}).populate('brand category');
+   var products = await ProductModel.find({}).populate('brand category material');
    // var categories = await ProductModel.find({}).populate('category');
    //Path: views/product/index.hbs
    res.render('product/index', { products });
 })
 
 router.get('/customer', async (req, res) => {
-   var products = await ProductModel.find({}).populate('brand category');
+   var products = await ProductModel.find({}).populate('brand category material');
    //Path: views/product/index.hbs
    res.render('product/list', { products});
 })
@@ -21,7 +22,8 @@ router.get('/customer', async (req, res) => {
 router.get('/add', async (req, res) => {
    var brands = await BrandModel.find({});
    var categories = await CategoryModel.find({});
-   res.render('product/add', { brands, categories });
+   var materials = await MaterialModel.find({});
+   res.render('product/add', { brands, categories, materials });
 })
 
 router.post('/add', async (req, res) => {
@@ -48,7 +50,8 @@ router.get('/edit/:id', async (req, res) => {
    var product = await ProductModel.findById(id);
    var brands = await BrandModel.find({});
    var categories = await CategoryModel.find({});
-   res.render('product/edit', { product, brands, categories });
+   var materials = await MaterialModel.find({});
+   res.render('product/edit', { product, brands, categories, materials });
 })
 
 router.post('/edit/:id', async (req, res) => {
@@ -65,20 +68,20 @@ router.post('/edit/:id', async (req, res) => {
 
 router.get('/sort/asc', async (req, res) => {
    //SQL: SELECT * FROM products ORDER BY model
-   var products = await ProductModel.find().populate('brand category').sort({ model: 1 });
+   var products = await ProductModel.find().populate('brand category marterial').sort({ model: 1 });
    res.render('product/index', { products })
 })
 
 router.get('/sort/desc', async (req, res) => {
    //SQL: SELECT * FROM products ORDER BY model DESC
-   var products = await ProductModel.find().populate('brand category').sort({ model: -1 });
+   var products = await ProductModel.find().populate('brand category marterial').sort({ model: -1 });
    res.render('product/index', { products })
 })
 
 router.post('/search', async (req, res) => {
    var keyword = req.body.keyword;
    //SQL: SELECT * FROM products WHERE model LIKE '%keyword%'
-   var products = await ProductModel.find({ model: new RegExp(keyword, "i") }).populate('brand category');
+   var products = await ProductModel.find({ model: new RegExp(keyword, "i") }).populate('brand category marterial');
    res.render('product/index', { products })
 })
 

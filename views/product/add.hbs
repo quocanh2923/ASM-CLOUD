@@ -10,6 +10,12 @@
    <input type="radio" name="color" value="Yellow"> Yellow
    <input type="radio" name="color" value="Blue"> Blue
    <br><br>
+   Product material: 
+      {{#each materials}}
+      <input type="radio" name="material" value="{{_id}}"> {{name}}
+      
+      {{/each}}
+   <br><br>
    Product brand: <br>
    <select name="brand">
       {{#each brands }}
